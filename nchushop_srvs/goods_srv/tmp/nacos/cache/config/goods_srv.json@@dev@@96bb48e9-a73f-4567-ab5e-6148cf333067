@@ -1,0 +1,15 @@
+{
+  "name" : "goods_srv",
+  "host" : "172.20.10.8",
+  "mysql": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "user": "root",
+    "password": "123",
+    "db": "mxshop_goods_srv"
+  },
+  "consul": {
+    "host": "172.20.10.8",
+    "port": 8500
+  }
+}
