@@ -1,6 +1,6 @@
 package config
 
-type UserSrvConfig struct {
+type GoodsSrvConfig struct {
 	Host string `mapstructure:"host" json:"host"`
 	Port int    `mapstructure:"port" json:"port"`
 	Name string `mapstructure:"name" json:"name"`
@@ -27,15 +27,13 @@ type RedisConfig struct {
 }
 
 type ServerConfig struct {
-	Name        string        `mapstructure:"name" json:"name"`
-	Host        string        `mapstructure:"host" json:"host"`
-	Tags        []string      `mapstructure:"tags" json:"tags"`
-	Port        int           `mapstructure:"port" json:"port"`
-	UserSrvInfo UserSrvConfig `mapstructure:"user_srv" json:"user_srv"`
-	JWTInfo     JWTConfig     `mapstructure:"jwt" json:"jwt"`
-	AliSmsInfo  AliSmsConfig  `mapstructure:"sms" json:"sms"`
-	RedisInfo   RedisConfig   `mapstructure:"redis" json:"redis"`
-	ConsulInfo  ConsulConfig  `mapstructure:"consul" json:"consul"`
+	Name         string         `mapstructure:"name" json:"name"`
+	Host         string         `mapstructure:"host" json:"host"`
+	Tags         []string       `mapstructure:"tags" json:"tags"`
+	Port         int            `mapstructure:"port" json:"port"`
+	GoodsSrvInfo GoodsSrvConfig `mapstructure:"goods_srv" json:"goods_srv"`
+	JWTInfo      JWTConfig      `mapstructure:"jwt" json:"jwt"`
+	ConsulInfo   ConsulConfig   `mapstructure:"consul" json:"consul"`
 }
 
 type NacosConfig struct {

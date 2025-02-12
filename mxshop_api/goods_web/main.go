@@ -2,17 +2,13 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin/binding"
-	ut "github.com/go-playground/universal-translator"
-	"github.com/go-playground/validator/v10"
-	uuid "github.com/satori/go.uuid"
+	"github.com/nacos-group/nacos-sdk-go/inner/uuid"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
-	"mxshop_api/user_web/global"
-	"mxshop_api/user_web/initialize"
-	"mxshop_api/user_web/utils"
-	"mxshop_api/user_web/utils/register/consul"
-	myvalidator "mxshop_api/user_web/validator"
+	"mxshop_api/goods_web/global"
+	"mxshop_api/goods_web/initialize"
+	"mxshop_api/goods_web/utils"
+	"mxshop_api/goods_web/utils/register/consul"
 	"os"
 	"os/signal"
 	"syscall"
@@ -45,20 +41,8 @@ func main() {
 			global.ServerConfig.Port = port
 		}
 	}
-	// 注册验证器
-	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
-		_ = v.RegisterValidation("mobile", myvalidator.ValidateMobile)
-		_ = v.RegisterTranslation("mobile", global.Trans, func(ut ut.Translator) error {
-			return ut.Add("mobile", "{0} 非法的手机号码!", true) // see universal-translator for details
-		}, func(ut ut.Translator, fe validator.FieldError) string {
-			t, _ := ut.T("mobile", fe.Field())
-			return t
-		})
-	}
-
-	// 服务注册
 	registerClient := consul.NewRegistryClient(global.ServerConfig.ConsulInfo.Host, global.ServerConfig.ConsulInfo.Port)
-	uuidRsp := uuid.NewV4()
+	uuidRsp, _ := uuid.NewV4()
 	serviceId := fmt.Sprintf("%s", uuidRsp)
 	err := registerClient.Register(global.ServerConfig.Host, global.ServerConfig.Port, global.ServerConfig.Name, global.ServerConfig.Tags, serviceId)
 	if err != nil {
