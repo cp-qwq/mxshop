@@ -1,0 +1,37 @@
+2025-02-08T16:26:33.413+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<tmp/nacos/log>   cacheDir:<tmp/nacos/cache>
+2025-02-08T17:21:33.842+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<tmp/nacos/log>   cacheDir:<tmp/nacos/cache>
+2025-02-08T17:38:01.306+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<tmp/nacos/log>   cacheDir:<tmp/nacos/cache>
+2025-02-09T13:44:09.920+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<tmp/nacos/log>   cacheDir:<tmp/nacos/cache>
+2025-02-09T13:51:55.315+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<tmp/nacos/log>   cacheDir:<tmp/nacos/cache>
+2025-02-10T14:53:51.239+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<tmp/nacos/log>   cacheDir:<tmp/nacos/cache>
+2025-02-13T00:14:01.854+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<tmp/nacos/log>   cacheDir:<tmp/nacos/cache>
+2025-02-13T15:34:11.973+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<tmp/nacos/log>   cacheDir:<tmp/nacos/cache>
+2025-02-13T15:34:12.106+0800	[31mERROR[0m	nacos_server/nacos_server.go:199	api</v1/cs/configs>,method:<GET>, params:<{"dataId":"inventory_srv.json","group":"dev","tenant":"6bcbef6d-0af2-4ba2-95d9-e152059455ee"}>, call domain error:<[404] config data not exist
+> , result:<config data not exist
+>
+2025-02-13T15:34:12.115+0800	[31mERROR[0m	nacos_server/nacos_server.go:199	api</v1/cs/configs>,method:<GET>, params:<{"dataId":"inventory_srv.json","group":"dev","tenant":"6bcbef6d-0af2-4ba2-95d9-e152059455ee"}>, call domain error:<[404] config data not exist
+> , result:<config data not exist
+>
+2025-02-13T15:34:12.124+0800	[31mERROR[0m	nacos_server/nacos_server.go:199	api</v1/cs/configs>,method:<GET>, params:<{"dataId":"inventory_srv.json","group":"dev","tenant":"6bcbef6d-0af2-4ba2-95d9-e152059455ee"}>, call domain error:<[404] config data not exist
+> , result:<config data not exist
+>
+2025-02-13T15:34:12.124+0800	[31mERROR[0m	config_client/config_client.go:202	get config from server error:[404] config data not exist
+ 
+2025-02-13T15:34:12.125+0800	[33mWARN[0m	config_client/config_client.go:207	[client.GetConfig] config not found, dataId: inventory_srv.json, group: dev, namespaceId: 6bcbef6d-0af2-4ba2-95d9-e152059455ee.
+2025-02-13T15:36:52.517+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<tmp/nacos/log>   cacheDir:<tmp/nacos/cache>
+2025-02-13T15:36:52.529+0800	[31mERROR[0m	nacos_server/nacos_server.go:199	api</v1/cs/configs>,method:<GET>, params:<{"dataId":"inventory.json","group":"dev","tenant":"6bcbef6d-0af2-4ba2-95d9-e152059455ee"}>, call domain error:<[404] config data not exist
+> , result:<config data not exist
+>
+2025-02-13T15:36:52.537+0800	[31mERROR[0m	nacos_server/nacos_server.go:199	api</v1/cs/configs>,method:<GET>, params:<{"dataId":"inventory.json","group":"dev","tenant":"6bcbef6d-0af2-4ba2-95d9-e152059455ee"}>, call domain error:<[404] config data not exist
+> , result:<config data not exist
+>
+2025-02-13T15:36:52.544+0800	[31mERROR[0m	nacos_server/nacos_server.go:199	api</v1/cs/configs>,method:<GET>, params:<{"dataId":"inventory.json","group":"dev","tenant":"6bcbef6d-0af2-4ba2-95d9-e152059455ee"}>, call domain error:<[404] config data not exist
+> , result:<config data not exist
+>
+2025-02-13T15:36:52.544+0800	[31mERROR[0m	config_client/config_client.go:202	get config from server error:[404] config data not exist
+ 
+2025-02-13T15:36:52.545+0800	[33mWARN[0m	config_client/config_client.go:207	[client.GetConfig] config not found, dataId: inventory.json, group: dev, namespaceId: 6bcbef6d-0af2-4ba2-95d9-e152059455ee.
+2025-02-13T15:38:33.596+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<tmp/nacos/log>   cacheDir:<tmp/nacos/cache>
+2025-02-13T15:39:20.484+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<tmp/nacos/log>   cacheDir:<tmp/nacos/cache>
+2025-02-13T15:40:26.377+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<tmp/nacos/log>   cacheDir:<tmp/nacos/cache>
+2025-02-13T16:20:26.953+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<tmp/nacos/log>   cacheDir:<tmp/nacos/cache>
