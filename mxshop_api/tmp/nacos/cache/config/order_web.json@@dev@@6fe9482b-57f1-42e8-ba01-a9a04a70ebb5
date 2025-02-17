@@ -1,0 +1,19 @@
+{
+  "host" : "172.20.10.8",
+  "name": "order_web",
+  "port": 8083,
+  "tags": ["mxshop","imooc","bobby","order","web"],
+  "goods_srv": {
+    "name": "goods_srv"
+  },
+  "order_srv": {
+    "name": "order_srv"
+  },
+  "jwt": {
+    "key": "VYLDYq3&hGWjWqF$K1ih"
+  },
+  "consul": {
+    "host": "172.20.10.8",
+    "port": 8500
+  }
+}

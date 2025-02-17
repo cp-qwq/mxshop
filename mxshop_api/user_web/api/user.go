@@ -3,11 +3,6 @@ package api
 import (
 	"context"
 	"fmt"
-	"github.com/dgrijalva/jwt-go"
-	"github.com/gin-gonic/gin"
-	"github.com/go-playground/validator/v10"
-	"github.com/go-redis/redis"
-	"go.uber.org/zap"
 	"mxshop_api/user_web/forms"
 	"mxshop_api/user_web/global"
 	"mxshop_api/user_web/global/response"
@@ -18,6 +13,12 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/dgrijalva/jwt-go"
+	"github.com/gin-gonic/gin"
+	"github.com/go-playground/validator/v10"
+	"github.com/go-redis/redis"
+	"go.uber.org/zap"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -114,12 +115,12 @@ func PassWordLogin(c *gin.Context) {
 		return
 	}
 
-	//if !store.Verify(passwordLoginForm.CaptchaId, passwordLoginForm.Captcha, true) {
-	//	c.JSON(http.StatusBadRequest, gin.H{
-	//		"captcha": "验证码错误",
-	//	})
-	//	return
-	//}
+	if !store.Verify(passwordLoginForm.CaptchaId, passwordLoginForm.Captcha, true) {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"captcha": "验证码错误",
+		})
+		return
+	}
 
 	// 登录的逻辑
 	if rsp, err := global.UserSrvClient.GetUserByMobile(context.Background(), &proto.MobileRequest{

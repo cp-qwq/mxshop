@@ -120,7 +120,7 @@ func (s *UserServer) CreateUser(ctx context.Context, req *proto.CreateUserInfo) 
 	user.NickName = req.NickName
 
 	//密码加密
-	options := &password.Options{SaltLen: 16, Iterations: 100, KeyLen: 32, HashFunction: sha512.New}
+	options := &password.Options{SaltLen: 32, Iterations: 100000, KeyLen: 64, HashFunction: sha512.New} 
 	salt, encodedPwd := password.Encode(req.PassWord, options)
 	user.Password = fmt.Sprintf("$pbkdf2-sha512$%s$%s", salt, encodedPwd)
 
@@ -155,7 +155,7 @@ func (s *UserServer) UpdateUser(ctx context.Context, req *proto.UpdateUserInfo) 
 
 func (s *UserServer) CheckPassWord(ctx context.Context, req *proto.PasswordCheckInfo) (*proto.CheckResponse, error) {
 	//校验密码
-	options := &password.Options{SaltLen: 16, Iterations: 100, KeyLen: 32, HashFunction: sha512.New}
+	options := &password.Options{SaltLen: 32, Iterations: 100000, KeyLen: 64, HashFunction: sha512.New}
 	passwordInfo := strings.Split(req.EncryptedPassword, "$")
 	check := password.Verify(req.Password, passwordInfo[2], passwordInfo[3], options)
 	return &proto.CheckResponse{Success: check}, nil
