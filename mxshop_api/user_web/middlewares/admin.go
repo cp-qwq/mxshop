@@ -9,7 +9,7 @@ import (
 func IsAdminAuth() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		claims, _ := ctx.Get("claims")
-		currentUser := claims.(*models.CustomClaims)
+		currentUser := claims.(*models.AccessClaims)
 
 		if currentUser.AuthorityId != 2 {
 			ctx.JSON(http.StatusForbidden, gin.H{

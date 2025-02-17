@@ -1,5 +1,7 @@
 package config
 
+import "time"
+
 type UserSrvConfig struct {
 	Host string `mapstructure:"host" json:"host"`
 	Port int    `mapstructure:"port" json:"port"`
@@ -7,7 +9,11 @@ type UserSrvConfig struct {
 }
 
 type JWTConfig struct {
-	SigningKey string `mapstructure:"key" json:"key"`
+	Issuer        string        `mapstructure:"issuer" json:"issuer"`
+	AccessKey     string        `mapstructure:"access_key" json:"access_key"`
+	RefreshKey    string        `mapstructure:"refresh_key" json:"refresh_key"`
+	AccessExpire  time.Duration `mapstructure:"access_expire" json:"access_expire"`
+	RefreshExpire time.Duration `mapstructure:"refresh_expire" json:"refresh_expire"`
 }
 
 type AliSmsConfig struct {

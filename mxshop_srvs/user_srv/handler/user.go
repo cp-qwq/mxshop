@@ -2,19 +2,18 @@ package handler
 
 import (
 	"context"
-	"crypto/sha512"
 	"fmt"
-	"github.com/anaskhan96/go-password-encoder"
-	"github.com/golang/protobuf/ptypes/empty"
-	"go.uber.org/zap"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
-	"gorm.io/gorm"
 	"mxshop_srvs/user_srv/global"
 	"mxshop_srvs/user_srv/model"
 	"mxshop_srvs/user_srv/proto"
-	"strings"
 	"time"
+
+	"github.com/golang/protobuf/ptypes/empty"
+	"go.uber.org/zap"
+	"golang.org/x/crypto/bcrypt"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+	"gorm.io/gorm"
 )
 
 type UserServer struct {
@@ -119,10 +118,12 @@ func (s *UserServer) CreateUser(ctx context.Context, req *proto.CreateUserInfo) 
 	user.Mobile = req.Mobile
 	user.NickName = req.NickName
 
-	//密码加密
-	options := &password.Options{SaltLen: 32, Iterations: 100000, KeyLen: 64, HashFunction: sha512.New} 
-	salt, encodedPwd := password.Encode(req.PassWord, options)
-	user.Password = fmt.Sprintf("$pbkdf2-sha512$%s$%s", salt, encodedPwd)
+	// 密码加密（bcrypt实现）
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.PassWord), bcrypt.DefaultCost) // 默认cost=10
+	if err != nil {
+		return nil, status.Errorf(codes.Internal, "密码加密失败: %v", err)
+	}
+	user.Password = string(hashedPassword) // 直接存储bcrypt哈希值
 
 	result = global.DB.Create(&user)
 	if result.Error != nil {
@@ -154,9 +155,13 @@ func (s *UserServer) UpdateUser(ctx context.Context, req *proto.UpdateUserInfo) 
 }
 
 func (s *UserServer) CheckPassWord(ctx context.Context, req *proto.PasswordCheckInfo) (*proto.CheckResponse, error) {
-	//校验密码
-	options := &password.Options{SaltLen: 32, Iterations: 100000, KeyLen: 64, HashFunction: sha512.New}
-	passwordInfo := strings.Split(req.EncryptedPassword, "$")
-	check := password.Verify(req.Password, passwordInfo[2], passwordInfo[3], options)
-	return &proto.CheckResponse{Success: check}, nil
+	// 密码校验
+	err := bcrypt.CompareHashAndPassword(
+		[]byte(req.EncryptedPassword),
+		[]byte(req.Password),
+	)
+
+	return &proto.CheckResponse{
+		Success: err == nil, // 当err为nil时密码正确
+	}, nil
 }

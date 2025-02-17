@@ -1,12 +1,23 @@
 package models
 
 import (
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt/v5"
 )
 
-type CustomClaims struct {
-	ID          uint
-	NickName    string
-	AuthorityId uint
-	jwt.StandardClaims
+type AccessClaims struct {
+	ID          uint   `json:"id"`
+	NickName    string `json:"nick_name"`
+	AuthorityId uint   `json:"authority_id"`
+	jwt.RegisteredClaims
+}
+
+type RefreshClaims struct {
+	UserID uint `json:"user_id"`
+	jwt.RegisteredClaims
+}
+
+type TokenPair struct {
+	AccessToken  string `json:"access_token"`
+	RefreshToken string `json:"refresh_token"`
+	ExpiresIn    int    `json:"expires_in"`
 }
